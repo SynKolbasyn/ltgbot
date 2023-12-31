@@ -1,4 +1,5 @@
 #include <ltgbot/ltgbot.hpp>
+#include <ltgbot/types/message.hpp>
 
 
 namespace sk {
@@ -24,7 +25,6 @@ void Bot::start() {
     types::Message message;
     _callback(message);
   }
-  
 }
 
 
