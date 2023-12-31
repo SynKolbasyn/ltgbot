@@ -7,5 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(${PROJECT_NAME})
 
-add_library(${PROJECT_NAME} src/ltgbot/ltgbot.hpp src/ltgbot.cpp)
+add_library(${PROJECT_NAME} STATIC
+  src/ltgbot/ltgbot.hpp src/ltgbot.cpp
+  src/ltgbot/exception.hpp src/exception.cpp
+  src/ltgbot/types/types.hpp
+  src/ltgbot/types/chat.hpp src/chat.cpp
+  src/ltgbot/types/message.hpp src/message.cpp
+  src/ltgbot/types/user.hpp src/user.cpp
+)
 target_include_directories(${PROJECT_NAME} PUBLIC src/)
