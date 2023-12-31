@@ -15,4 +15,5 @@ add_library(${PROJECT_NAME} STATIC
   src/ltgbot/types/message.hpp src/message.cpp
   src/ltgbot/types/user.hpp src/user.cpp
 )
+target_link_libraries(${PROJECT_NAME} curl)
 target_include_directories(${PROJECT_NAME} PUBLIC src/)
