@@ -77,7 +77,7 @@ project(${PROJECT_NAME})
 add_executable(${PROJECT_NAME} src/main.cpp)
 
 add_subdirectory(libs/ltgbot/)
-target_link_libraries(${PROJECT_NAME} ltgbot)
+target_link_libraries(${PROJECT_NAME} ltgbot curl)
 ```
 
 Configure
