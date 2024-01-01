@@ -1,4 +1,9 @@
-#include <ltgbot/types/chat.hpp>
+#include <string>
+
+#include <nlohmann/json.hpp>
+
+#include "ltgbot/types/chat.hpp"
+#include "ltgbot/types/types.hpp"
 
 
 namespace sk {
@@ -10,8 +15,24 @@ Chat::Chat() {
 }
 
 
+Chat::Chat(nlohmann::json chat) {
+  _id = chat["id"];
+  _type = chat["type"];
+}
+
+
 Chat::~Chat() {
 
+}
+
+
+i64 Chat::get_id() {
+  return _id;
+}
+
+
+std::string Chat::get_type() {
+  return _type;
 }
 
 

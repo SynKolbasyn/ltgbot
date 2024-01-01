@@ -4,6 +4,13 @@
 #define _CHAT_HPP_
 
 
+#include <string>
+
+#include <nlohmann/json.hpp>
+
+#include "types.hpp"
+
+
 namespace sk {
 namespace types {
 
@@ -11,10 +18,14 @@ namespace types {
 class Chat {
 public:
   Chat();
+  Chat(nlohmann::json chat);
   ~Chat();
+  i64 get_id();
+  std::string get_type();
 
 private:
-
+  i64 _id;
+  std::string _type;
 };
 
 
