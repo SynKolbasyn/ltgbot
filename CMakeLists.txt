@@ -9,5 +9,8 @@ project(${PROJECT_NAME})
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/*.hpp" "src/*.cpp")
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
-target_link_libraries(${PROJECT_NAME} curl)
+target_link_libraries(${PROJECT_NAME}
+  curl
+  nlohmann_json
+)
 target_include_directories(${PROJECT_NAME} PUBLIC src/)
