@@ -24,7 +24,12 @@ sudo apt install cmake
 sudo apt install libcurl4-openssl-dev
 ```
 
-5. Build tools
+5. [nlohmann json](https://github.com/nlohmann/json.git)
+```Shell
+sudo apt install nlohmann-json3-dev
+```
+
+6. Build tools
 ```Shell
 sudo apt install build-essential
 ```
