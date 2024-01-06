@@ -38,12 +38,12 @@ sudo apt install build-essential
 
 Create a folder for your project
 ```Shell
-mkdir project_name/
+mkdir ./project_name/
 ```
 
 Navigate to the created folder
 ```Shell
-cd project_name/
+cd ./project_name/
 ```
 
 Clone the library repository to your project
@@ -88,28 +88,28 @@ target_link_libraries(${PROJECT_NAME} ltgbot)
 Configure
 ```Shell
 # Debug
-cmake -S ./ -B build/Debug/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug
+cmake -S ./ -B ./build/Debug/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug
 
 # Release
-cmake -S ./ -B build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
+cmake -S ./ -B ./build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
 ```
 
 Build
 ```Shell
 # Debug
-cmake --build build/Debug/ --config Debug
+cmake --build ./build/Debug/ --config Debug
 
 # Release
-cmake --build build/Release/ --config Release
+cmake --build ./build/Release/ --config Release
 ```
 
 Run
 ```Shell
 # Debug
-build/Debug/project_name
+./build/Debug/project_name
 
 # Release
-build/Release/project_name
+./build/Release/project_name
 ```
 
 ## Contributing
