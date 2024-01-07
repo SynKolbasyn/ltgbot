@@ -36,42 +36,53 @@ sudo apt install build-essential
 
 ### Usage
 
-Create a folder for your project
+#### Create a folder for your project
 ```Shell
 mkdir ./project_name/
 ```
 
-Navigate to the created folder
+#### Navigate to the created folder
 ```Shell
 cd ./project_name/
 ```
 
-Clone the library repository to your project
+#### Clone the library repository to your project
 ```Shell
 git clone https://github.com/SynKolbasyn/ltgbot.git libs/ltgbot/
 ```
 
-Create a file src/main.cpp and write the following program in it
+#### Create a file src/main.cpp and write the following program in it
 ```C++
+#include <iostream>
+
 #include <ltgbot/ltgbot.hpp>
+#include <ltgbot/exceptions.hpp>
 
 sk::Bot bot("BOT_TOKEN");
 
 void callback(sk::types::Message message);
 
 int main() {
-  bot.set_callback(callback);
-  bot.start();
+  try {
+    bot.set_callback(callback);
+    bot.start();
+  }
+  catch (sk::exceptions::Ltgbot_exception e) {
+    std::cout << e.what() << std::endl;
+    return -1;
+  }
+
   return 0;
 }
 
 void callback(sk::types::Message message) {
-  bot.send(message.user.get_id(), message.get_text());
+  std::cout << "Received a message from: " << message.get_from().get_first_name() << std::endl << "Text: " << message.get_text() << std::endl;
+  return;
 }
 
 ```
 
-Create a file in the root of the project CMakeLists.txt and fill it in with the following lines
+#### Create a file in the root of the project CMakeLists.txt and fill it in with the following lines
 ```CMake
 cmake_minimum_required(VERSION 3.16.3)
 
@@ -83,34 +94,53 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 
 add_subdirectory(libs/ltgbot/)
 target_link_libraries(${PROJECT_NAME} ltgbot)
+
 ```
 
-Configure
+#### Configure
+<details>
+<summary>Debug</summary>
 ```Shell
-# Debug
 cmake -S ./ -B ./build/Debug/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug
+```
+</details>
 
-# Release
+<details>
+<summary>Release</summary>
+```Shell
 cmake -S ./ -B ./build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
 ```
+</details>
 
-Build
+#### Build
+<details>
+<summary>Debug</summary>
 ```Shell
-# Debug
-cmake --build ./build/Debug/ --config Debug
+make --build ./build/Debug/ --config Debug
+```
+</details>
 
-# Release
+<details>
+<summary>Release</summary>
+```Shell
 cmake --build ./build/Release/ --config Release
 ```
+</details>
 
-Run
+#### Run
+<details>
+<summary>Debug</summary>
 ```Shell
-# Debug
 ./build/Debug/project_name
+```
+</details>
 
-# Release
+<details>
+<summary>Release</summary>
+```Shell
 ./build/Release/project_name
 ```
+</details>
 
 ## Contributing
 
