@@ -100,6 +100,7 @@ target_link_libraries(${PROJECT_NAME} ltgbot)
 #### Configure
 <details>
 <summary>Debug</summary>
+
 ```Shell
 cmake -S ./ -B ./build/Debug/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug
 ```
@@ -107,6 +108,7 @@ cmake -S ./ -B ./build/Debug/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug
 
 <details>
 <summary>Release</summary>
+
 ```Shell
 cmake -S ./ -B ./build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
 ```
@@ -115,6 +117,7 @@ cmake -S ./ -B ./build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
 #### Build
 <details>
 <summary>Debug</summary>
+
 ```Shell
 make --build ./build/Debug/ --config Debug
 ```
@@ -122,6 +125,7 @@ make --build ./build/Debug/ --config Debug
 
 <details>
 <summary>Release</summary>
+
 ```Shell
 cmake --build ./build/Release/ --config Release
 ```
@@ -130,6 +134,7 @@ cmake --build ./build/Release/ --config Release
 #### Run
 <details>
 <summary>Debug</summary>
+
 ```Shell
 ./build/Debug/project_name
 ```
@@ -137,6 +142,7 @@ cmake --build ./build/Release/ --config Release
 
 <details>
 <summary>Release</summary>
+
 ```Shell
 ./build/Release/project_name
 ```
