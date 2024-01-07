@@ -1,9 +1,10 @@
+#include "ltgbot/types/chat.hpp"
+
 #include <string>
 
 #include <nlohmann/json.hpp>
 
-#include "ltgbot/types/chat.hpp"
-#include "ltgbot/types/types.hpp"
+#include "ltgbot/types/simple_types.hpp"
 
 
 namespace sk {

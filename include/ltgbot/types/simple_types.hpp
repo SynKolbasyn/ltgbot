@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _TYPES_HPP_
-#define _TYPES_HPP_
+#ifndef _SIMPLE_TYPES_HPP_
+#define _SIMPLE_TYPES_HPP_
 
 
 #include <cstdint>
@@ -27,4 +27,4 @@ typedef double f64;
 } // namespace sk
 
 
-#endif // _TYPES_HPP_
+#endif // _SIMPLE_TYPES_HPP_

@@ -6,9 +6,9 @@
 
 #include <nlohmann/json.hpp>
 
-#include "types.hpp"
-#include "user.hpp"
-#include "chat.hpp"
+#include "ltgbot/types/simple_types.hpp"
+#include "ltgbot/types/user.hpp"
+#include "ltgbot/types/chat.hpp"
 
 
 namespace sk {
@@ -32,6 +32,8 @@ private:
   Chat _chat;
   i64 _date;
   std::string _text;
+
+  template <typename T> T _parse(nlohmann::json json, std::string key, T default_value);
 };
 
 

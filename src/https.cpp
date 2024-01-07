@@ -1,9 +1,11 @@
+#include "ltgbot/https.hpp"
+
 #include <string>
 
 #include <curl/curl.h>
 
-#include "ltgbot/https.hpp"
-#include "ltgbot/exception.hpp"
+#include "ltgbot/exceptions.hpp"
+
 
 namespace sk {
 
@@ -22,7 +24,7 @@ std::string Https::make_request(std::string url) {
 
   curl_global_init(CURL_GLOBAL_DEFAULT);
   CURL* curl = curl_easy_init();
-  if (!curl) throw exception::Ltgbot_exception("[ ERROR ] -> curl_easy_init");
+  if (!curl) throw exceptions::Curl_easy_init_exception();
 
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_write_buffer);
   curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _curl_write_function);
@@ -37,7 +39,7 @@ std::string Https::make_request(std::string url) {
     if ((res == CURLE_OPERATION_TIMEDOUT) || (res == CURLE_COULDNT_CONNECT)) {
       return "";
     }
-    throw exception::Ltgbot_exception("[ ERROR ] -> curl_easy_perform: " + std::string(curl_easy_strerror(res)));
+    throw exceptions::Curl_easy_perform_exception("[ ERROR ] -> curl_easy_perform: " + std::string(curl_easy_strerror(res)));
   }
 
   return curl_write_buffer;

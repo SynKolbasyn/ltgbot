@@ -1,7 +1,8 @@
+#include "ltgbot/types/message.hpp"
+
 #include <nlohmann/json.hpp>
 
-#include "ltgbot/types/message.hpp"
-#include "ltgbot/types/types.hpp"
+#include "ltgbot/types/simple_types.hpp"
 #include "ltgbot/types/user.hpp"
 #include "ltgbot/types/chat.hpp"
 
@@ -16,11 +17,11 @@ Message::Message() {
 
 
 Message::Message(nlohmann::json message) {
-  _message_id = message["message_id"];
+  _message_id = _parse<i64>(message, "message_id", 0);
   _from = User(message["from"]);
   _chat = Chat(message["chat"]);
-  _date = message["date"];
-  _text = message["text"];
+  _date = _parse<i64>(message, "date", 0);
+  _text = _parse<std::string>(message, "text", "");
 }
 
 
@@ -51,6 +52,12 @@ i64 Message::get_date() {
 
 std::string Message::get_text() {
   return _text;
+}
+
+
+template <typename T> T Message::_parse(nlohmann::json json, std::string key, T default_value) {
+  if (json.contains(key)) return json[key.c_str()].get<T>();
+  return default_value;
 }
 
 

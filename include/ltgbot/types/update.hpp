@@ -6,8 +6,8 @@
 
 #include <nlohmann/json.hpp>
 
-#include "types.hpp"
-#include "message.hpp"
+#include "ltgbot/types/simple_types.hpp"
+#include "ltgbot/types/message.hpp"
 
 
 namespace sk {

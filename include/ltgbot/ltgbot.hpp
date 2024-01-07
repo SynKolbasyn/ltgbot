@@ -6,13 +6,12 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
 
-#include "ltgbot/types/message.hpp"
 #include "ltgbot/types/types.hpp"
-#include "ltgbot/types/update.hpp"
 
 
 namespace sk {
@@ -27,9 +26,8 @@ public:
 
 private:
   std::string _token;
-  std::string _curl_write_buffer;
+  std::chrono::_V2::system_clock::time_point _prev_update_time;
 
-  static size_t _curl_write_function(char* contents, size_t size, size_t nmemb, void* userdata);
   void (*_callback)(types::Message message);
   types::i64 _skip_old_messages();
   std::vector<types::Update> _get_updates(types::i64 offset);

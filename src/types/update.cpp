@@ -1,7 +1,9 @@
+#include "ltgbot/types/update.hpp"
+
 #include <nlohmann/json.hpp>
 
-#include "ltgbot/types/update.hpp"
-#include "ltgbot/types/types.hpp"
+#include "ltgbot/types/simple_types.hpp"
+#include "ltgbot/types/message.hpp"
 
 
 namespace sk {

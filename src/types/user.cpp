@@ -1,9 +1,10 @@
+#include "ltgbot/types/user.hpp"
+
 #include <string>
 
 #include <nlohmann/json.hpp>
 
-#include "ltgbot/types/user.hpp"
-#include "ltgbot/types/types.hpp"
+#include "ltgbot/types/simple_types.hpp"
 
 
 namespace sk {

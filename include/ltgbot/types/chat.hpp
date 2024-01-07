@@ -8,7 +8,7 @@
 
 #include <nlohmann/json.hpp>
 
-#include "types.hpp"
+#include "ltgbot/types/simple_types.hpp"
 
 
 namespace sk {
