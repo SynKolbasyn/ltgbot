@@ -119,7 +119,7 @@ cmake -S ./ -B ./build/Release/ -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release
 <summary>Debug</summary>
 
 ```Shell
-make --build ./build/Debug/ --config Debug
+cmake --build ./build/Debug/ --config Debug
 ```
 </details>
 
