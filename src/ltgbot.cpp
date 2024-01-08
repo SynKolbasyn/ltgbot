@@ -61,10 +61,7 @@ types::i64 Bot::_skip_old_messages() {
 
 
 std::vector<types::Update> Bot::_get_updates(types::i64 offset) {
-  while ((std::chrono::high_resolution_clock::now() - _prev_update_time).count() <= 1000000000);
-
-  std::string telegram_response = Https().make_request("https://api.telegram.org/bot" + _token + "/getUpdates?offset=" + std::to_string(offset) + "&timeout=3");
-  _prev_update_time = std::chrono::high_resolution_clock::now();
+  std::string telegram_response = _https.get_updates("https://api.telegram.org/bot" + _token + "/getUpdates?offset=" + std::to_string(offset) + "&timeout=3");
   // std::cout << "telegram_response: " << telegram_response << std::endl;
   if (telegram_response.empty()) return std::vector<types::Update>();
 

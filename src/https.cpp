@@ -1,6 +1,7 @@
 #include "ltgbot/https.hpp"
 
 #include <string>
+#include <chrono>
 
 #include <curl/curl.h>
 
@@ -11,18 +12,18 @@ namespace sk {
 
 
 Https::Https() {
-
+  curl_global_init(CURL_GLOBAL_DEFAULT);
+  _prev_update_time = std::chrono::high_resolution_clock::now();
 }
 
 Https::~Https() {
-
+  curl_global_cleanup();
 }
 
 
-std::string Https::make_request(std::string url) {
+std::string Https::get_updates(std::string url) {
   std::string curl_write_buffer;
 
-  curl_global_init(CURL_GLOBAL_DEFAULT);
   CURL* curl = curl_easy_init();
   if (!curl) throw exceptions::Curl_easy_init_exception();
 
@@ -31,14 +32,13 @@ std::string Https::make_request(std::string url) {
   curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
   curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
   
+  while ((std::chrono::high_resolution_clock::now() - _prev_update_time).count() <= 1000000000);
   CURLcode res = curl_easy_perform(curl);
+  _prev_update_time = std::chrono::high_resolution_clock::now();
   curl_easy_cleanup(curl);
-  curl_global_cleanup();
 
   if (res != CURLE_OK) {
-    if ((res == CURLE_OPERATION_TIMEDOUT) || (res == CURLE_COULDNT_CONNECT)) {
-      return "";
-    }
+    if ((res == CURLE_OPERATION_TIMEDOUT) || (res == CURLE_COULDNT_CONNECT)) return "";
     throw exceptions::Curl_easy_perform_exception("[ ERROR ] -> curl_easy_perform: " + std::string(curl_easy_strerror(res)));
   }
 

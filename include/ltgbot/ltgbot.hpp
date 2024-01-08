@@ -12,6 +12,7 @@
 #include <nlohmann/json.hpp>
 
 #include "ltgbot/types/types.hpp"
+#include "ltgbot/https.hpp"
 
 
 namespace sk {
@@ -21,16 +22,17 @@ class Bot {
 public:
   Bot(const std::string token);
   ~Bot();
+
   void set_callback(void (*callback)(types::Message message));
   void start();
 
 private:
-  std::string _token;
-  std::chrono::_V2::system_clock::time_point _prev_update_time;
-
   void (*_callback)(types::Message message);
   types::i64 _skip_old_messages();
   std::vector<types::Update> _get_updates(types::i64 offset);
+
+  std::string _token;
+  Https _https;
 };
 
 
